@@ -1,0 +1,39 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.heart {
+    color: #FF0000;
+}
+
+
+.navbar-brand {
+    padding-top: 10px;
+}
+
+.navbar-inverse {
+    background-color: #BE6500 !important;
+    border-color: #BE6500 !important;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+    background-color: #BE6500 !important;
+}
+
+.dropdown-menu {
+    width: 300px !important;
+}
+
+.form-screen {
+    margin-left: 22px !important;
+}
+
+.form-url {
+    width: 300px !important;
+}
+
+footer a {
+    font-weight: bold;
+}
