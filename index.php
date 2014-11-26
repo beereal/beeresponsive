@@ -11,7 +11,9 @@
     <title>BeeResponsive by BeeReal</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- link href="assets/css/bootstrap.min.css" rel="stylesheet" -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Custom styles for this template -->
     <link href="assets/css/jumbotron.css" rel="stylesheet">
@@ -87,7 +89,7 @@
 
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Resolutions <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle icon-config" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"/></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">Smartphones</li>
                             <?php
@@ -199,10 +201,12 @@
             </div>
         </div>
 
-        <hr>
+        <?php if (($url != "") && is_array($user_screens) && (count($user_screens) > 0)): ?>
+            <hr>
+        <?php endif; ?>
 
         <footer>
-            <p>Coded with <span class="heart">❤</span> by <a href="http://www.beerealit.com" target="_blank">BeeReal</a></p>
+            <p>Made with <span class="heart">❤</span> by <a href="http://www.beerealit.com" target="_blank">BeeReal</a></p>
         </footer>
     </div> <!-- /container -->
 
