@@ -39,6 +39,8 @@
         if (isset($_GET['url']) && ($_GET['url'] != ""))
             $url = $_GET['url'];
 
+
+
         // read screen resolutions from form
         $user_screens = NULL;
         $user_screens_get = "";
@@ -161,6 +163,17 @@
         </div>
     </nav>
 
+
+    <?php
+
+        // normalize URL
+        if ( (strpos($url, "http://") === false) && (strpos($url, "https://") === false) )
+            $url = "http://" . $url;
+
+        // check if URL exists
+        $url_exists = ($fp = curl_init($url));
+    ?>
+
     <div class="jumbotron">
         <div class="container">
             <?php if ($url): ?>
@@ -176,28 +189,36 @@
         <div class="row">
             <div class="col-md-12">
                 <?php
-                if ($url):
+                    if ($url):
+                        if ($url_exists):
                 ?>
-                    <h1>Smartphones</h1>
+                            <h1>Smartphones</h1>
+                            <?php
+                                foreach($user_screens as $s_screen):
+                                    $s_screen = explode(",", $s_screen);
+                                    if ($s_screen[0] != ""):
+                                        $width_height = explode("x", $s_screen[0]);
+                            ?>
+                                        <section class="container-fluid" id="section1">
+                                            <h2 class="text-center v-center"><b><?php echo $s_screen[1] ?></b> (<?php echo $width_height[0] . ' x ' . $width_height[1] ?>)</h2>
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="row">
+                                                    <iframe src="<?php echo $url ?>" width="<?php echo $width_height[0] ?>px" height="<?php echo $width_height[1] ?>px"></iframe>
+                                                </div>
+                                            </div>
+                                        </section>
+                            <?php
+                                    endif;
+                                endforeach;
+                            ?>
                     <?php
-                        foreach($user_screens as $s_screen):
-                            $s_screen = explode(",", $s_screen);
-                            if ($s_screen[0] != ""):
-                                $width_height = explode("x", $s_screen[0]);
+                        else:
                     ?>
-                                <section class="container-fluid" id="section1">
-                                    <h2 class="text-center v-center"><b><?php echo $s_screen[1] ?></b> (<?php echo $width_height[0] . ' x ' . $width_height[1] ?>)</h2>
-                                    <div class="col-sm-6 col-sm-offset-3">
-                                        <div class="row">
-                                            <iframe src="<?php echo $url ?>" width="<?php echo $width_height[0] ?>px" height="<?php echo $width_height[1] ?>px"></iframe>
-                                        </div>
-                                    </div>
-                                </section>
-                    <?php
-                            endif;
-                        endforeach;
+                        <h1>We could not find that page :(</h1>
+            <?php
+                    endif;
                 endif;
-                ?>
+            ?>
             </div>
         </div>
 
